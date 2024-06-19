@@ -17,17 +17,17 @@ categories: 自定义View
 *   今天，我将全面总结自定义View中的Canvas类的使用，我能保证这是**市面上的最全面、最清晰、最易懂的**
 
 > Carson带你学Android自定义View文章系列：  
-> [Carson带你学Android：自定义View基础](../../posts/自定义View基础必知必会)  
-> [Carson带你学Android：自定义View-ViewRoot、DecorView、Window区别是什么](../../posts/ViewRoot-DecorView-Window区别是什么)  
-> [Carson带你学Android：一文梳理自定义View工作流程](../../posts/一文梳理自定义View工作流程)  
-> [Carson带你学Android：自定义View绘制准备-DecorView创建](../../posts/自定义View绘制准备-DecorView创建)  
-> [Carson带你学Android：自定义View Measure过程](../../posts/自定义View测量过程(Measure))  
-> [Carson带你学Android：带你了解神秘的MeasureSpec类](../../posts/自定义View-带你了解神秘的MeasureSpec类)  
-> [Carson带你学Android：自定义View Layout过程](../../posts/自定义View布局过程(Layout))  
-> [Carson带你学Android：自定义View Draw过程](../../posts/自定义View绘制过程(Draw))  
-> [Carson带你学Android：手把手教你写一个完整的自定义View](../../posts/手把手教你写一个完整的自定义View)  
-> [Carson带你学Android：Canvas类全面解析](../../posts/自定义View-Canvas类全面解析)  
-> [Carson带你学Android：Path类全面解析](../../posts/自定义View-Path类全面解析)  
+> [Carson带你学Android：自定义View基础]({% post_url 2024-04-01-自定义View基础必知必会 %})   
+> [Carson带你学Android：自定义View-ViewRoot、DecorView、Window区别是什么]({% post_url 2024-04-01-ViewRoot-DecorView-Window区别是什么 %})  
+> [Carson带你学Android：一文梳理自定义View工作流程]({% post_url 2024-04-01-一文梳理自定义View工作流程 %})  
+> [Carson带你学Android：自定义View绘制准备-DecorView创建]({% post_url 2024-04-01-自定义View绘制准备-DecorView创建 %})  
+> [Carson带你学Android：自定义View Measure过程]({% post_url 2024-04-01-自定义View测量过程(Measure) %})  
+> [Carson带你学Android：带你了解神秘的MeasureSpec类]({% post_url 2024-04-01-自定义View-带你了解神秘的MeasureSpec类 %})  
+> [Carson带你学Android：自定义View Layout过程]({% post_url 2024-04-01-自定义View布局过程(Layout) %})  
+> [Carson带你学Android：自定义View Draw过程]({% post_url 2024-04-01-自定义View绘制过程(Draw) %})  
+> [Carson带你学Android：手把手教你写一个完整的自定义View]({% post_url 2024-04-01-手把手教你写一个完整的自定义View %})  
+> [Carson带你学Android：Canvas类全面解析]({% post_url 2024-04-01-自定义View-Canvas类全面解析 %})  
+> [Carson带你学Android：Path类全面解析]({% post_url 2024-04-01-自定义View-Path类全面解析 %})  
 
 * * *
 
@@ -216,7 +216,7 @@ Style模式效果
 
 ### 3.2 Path类
 
-具体请看我写的另外一篇文章：[Path类的最全面详解 - 自定义View应用系列](https://www.jianshu.com/p/2c19abde958c)
+具体请看我写的另外一篇文章：[Path类的最全面详解 - 自定义View应用系列]({% post_url 2024-04-01-自定义View-Path类全面解析 %})  
 
 ### 3.3 关闭硬件加速
 
@@ -284,7 +284,7 @@ Canvas canvas = new Canvas(bitmap)
 *   利用Canvas类可绘画出很多内容，如图形、文字、线条等等；
 *   对应使用的方法如下：
 
-> 仅列出常用方法，更加详细的方法可参考官方文档 [Canvas](https://links.jianshu.com/go?to=http%3A%2F%2Fdeveloper.android.com%2Freference%2Fandroid%2Fgraphics%2FCanvas.html)
+> 仅列出常用方法，更加详细的方法可参考官方文档 [Canvas](http://developer.android.com/reference/android/graphics/Canvas.html)
 
 ![](assets/img/docs/944365-ff8cc50eb32128a8.png)
 
@@ -312,10 +312,10 @@ Canvas具体使用时是在复写的onDraw（）里：
 ```
 
 具体为什么，请看我写的自定义View原理系列文章：  
-[（1）自定义View基础 - 最易懂的自定义View原理系列](https://www.jianshu.com/p/146e5cec4863)  
-[（2）自定义View Measure过程 - 最易懂的自定义View原理系列](https://www.jianshu.com/p/1dab927b2f36)  
-[（3）自定义View Layout过程 - 最易懂的自定义View原理系列](https://www.jianshu.com/p/158736a2549d)  
-[（4）自定义View Draw过程- 最易懂的自定义View原理系列](https://www.jianshu.com/p/95afeb7c8335)
+[（1）自定义View基础 - 最易懂的自定义View原理系列]({% post_url 2024-04-01-自定义View基础必知必会 %})   
+[（2）自定义View Measure过程 - 最易懂的自定义View原理系列]({% post_url 2024-04-01-自定义View测量过程(Measure) %})  
+[（3）自定义View Layout过程 - 最易懂的自定义View原理系列]({% post_url 2024-04-01-自定义View布局过程(Layout) %})  
+[（4）自定义View Draw过程- 最易懂的自定义View原理系列]({% post_url 2024-04-01-自定义View绘制过程(Draw) %}) 
 
 4.2.1 绘制颜色
 ==========
@@ -663,7 +663,7 @@ canvas.drawText("abcdefg",1,4,300,400,mPaint1);
 效果图
 
 **情况3：指定路径，并根据路径绘制文字**  
-关于Path类的使用请看我写的文章具体请看我写的另外一篇文章：[Path类的最全面详解 - 自定义View应用系列](https://www.jianshu.com/p/2c19abde958c)
+关于Path类的使用请看我写的文章具体请看我写的另外一篇文章：[Path类的最全面详解 - 自定义View应用系列]({% post_url 2024-04-01-自定义View-Path类全面解析 %})  
 
 ```cpp
        
@@ -1077,7 +1077,7 @@ Paste\_Image.png
 canvas.drawPath(mPath, mPaint)
 ```
 
-关于Path类的使用，具体请看我写的另外一篇文章：[Path类的最全面详解 - 自定义View应用系列](https://www.jianshu.com/p/2c19abde958c)
+关于Path类的使用，具体请看我写的另外一篇文章：[Path类的最全面详解 - 自定义View应用系列]({% post_url 2024-04-01-自定义View-Path类全面解析 %})  
 
 ### 4.2.6 画布操作
 
@@ -1502,15 +1502,17 @@ canvas.getSaveCount（）；
 ======
 
 通过阅读本文，相信你已经全面了解Canvas类的使用。Carson带你学Android自定义View文章系列：  
-[Carson带你学Android：自定义View基础](https://www.jianshu.com/p/146e5cec4863)  
-[Carson带你学Android：一文梳理自定义View工作流程](https://www.jianshu.com/p/e79a55c141d6)  
-[Carson带你学Android：自定义View绘制准备-DecorView创建](https://www.jianshu.com/p/ac3262d233af)  
-[Carson带你学Android：自定义View Measure过程](https://www.jianshu.com/p/1dab927b2f36)  
-[Carson带你学Android：自定义View Layout过程](https://www.jianshu.com/p/158736a2549d)  
-[Carson带你学Android：自定义View Draw过程](https://www.jianshu.com/p/95afeb7c8335)  
-[Carson带你学Android：手把手教你写一个完整的自定义View](https://www.jianshu.com/p/e9d8420b1b9c)  
-[Carson带你学Android：Canvas类全面解析](https://www.jianshu.com/p/762b490403c3)  
-[Carson带你学Android：Path类全面解析](https://www.jianshu.com/p/2c19abde958c)
+    [Carson带你学Android：自定义View基础]({% post_url 2024-04-01-自定义View基础必知必会 %})   
+    [Carson带你学Android：自定义View-ViewRoot、DecorView、Window区别是什么]({% post_url 2024-04-01-ViewRoot-DecorView-Window区别是什么 %})  
+    [Carson带你学Android：一文梳理自定义View工作流程]({% post_url 2024-04-01-一文梳理自定义View工作流程 %})  
+    [Carson带你学Android：自定义View绘制准备-DecorView创建]({% post_url 2024-04-01-自定义View绘制准备-DecorView创建 %})  
+    [Carson带你学Android：自定义View Measure过程]({% post_url 2024-04-01-自定义View测量过程(Measure) %})  
+    [Carson带你学Android：带你了解神秘的MeasureSpec类]({% post_url 2024-04-01-自定义View-带你了解神秘的MeasureSpec类 %})  
+    [Carson带你学Android：自定义View Layout过程]({% post_url 2024-04-01-自定义View布局过程(Layout) %})  
+    [Carson带你学Android：自定义View Draw过程]({% post_url 2024-04-01-自定义View绘制过程(Draw) %})  
+    [Carson带你学Android：手把手教你写一个完整的自定义View]({% post_url 2024-04-01-手把手教你写一个完整的自定义View %})  
+    [Carson带你学Android：Canvas类全面解析]({% post_url 2024-04-01-自定义View-Canvas类全面解析 %})  
+    [Carson带你学Android：Path类全面解析]({% post_url 2024-04-01-自定义View-Path类全面解析 %})  
 
 * * *
 

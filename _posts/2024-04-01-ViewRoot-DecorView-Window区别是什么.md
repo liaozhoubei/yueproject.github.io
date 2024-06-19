@@ -14,17 +14,17 @@ categories: 自定义View
 *   今天，本文将全面解析关于自定义View中基础：**ViewRoot、DecorView & Window**，希望你们会喜欢。
 
 > Carson带你学Android自定义View文章系列：  
-> [Carson带你学Android：自定义View基础](../../posts/自定义View基础必知必会)  
-> [Carson带你学Android：自定义View-ViewRoot、DecorView、Window区别是什么](../../posts/ViewRoot-DecorView-Window区别是什么)  
-> [Carson带你学Android：一文梳理自定义View工作流程](../../posts/一文梳理自定义View工作流程)  
-> [Carson带你学Android：自定义View绘制准备-DecorView创建](../../posts/自定义View绘制准备-DecorView创建)  
-> [Carson带你学Android：自定义View Measure过程](../../posts/自定义View测量过程(Measure))  
-> [Carson带你学Android：带你了解神秘的MeasureSpec类](../../posts/自定义View-带你了解神秘的MeasureSpec类)  
-> [Carson带你学Android：自定义View Layout过程](../../posts/自定义View布局过程(Layout))  
-> [Carson带你学Android：自定义View Draw过程](../../posts/自定义View绘制过程(Draw))  
-> [Carson带你学Android：手把手教你写一个完整的自定义View](../../posts/手把手教你写一个完整的自定义View)  
-> [Carson带你学Android：Canvas类全面解析](../../posts/自定义View-Canvas类全面解析)  
-> [Carson带你学Android：Path类全面解析](../../posts/自定义View-Path类全面解析)  
+> [Carson带你学Android：自定义View基础]({% post_url 2024-04-01-自定义View基础必知必会 %})   
+> [Carson带你学Android：自定义View-ViewRoot、DecorView、Window区别是什么]({% post_url 2024-04-01-ViewRoot-DecorView-Window区别是什么 %})  
+> [Carson带你学Android：一文梳理自定义View工作流程]({% post_url 2024-04-01-一文梳理自定义View工作流程 %})  
+> [Carson带你学Android：自定义View绘制准备-DecorView创建]({% post_url 2024-04-01-自定义View绘制准备-DecorView创建 %})  
+> [Carson带你学Android：自定义View Measure过程]({% post_url 2024-04-01-自定义View测量过程(Measure) %})  
+> [Carson带你学Android：带你了解神秘的MeasureSpec类]({% post_url 2024-04-01-自定义View-带你了解神秘的MeasureSpec类 %})  
+> [Carson带你学Android：自定义View Layout过程]({% post_url 2024-04-01-自定义View布局过程(Layout) %})  
+> [Carson带你学Android：自定义View Draw过程]({% post_url 2024-04-01-自定义View绘制过程(Draw) %})  
+> [Carson带你学Android：手把手教你写一个完整的自定义View]({% post_url 2024-04-01-手把手教你写一个完整的自定义View %})  
+> [Carson带你学Android：Canvas类全面解析]({% post_url 2024-04-01-自定义View-Canvas类全面解析 %})  
+> [Carson带你学Android：Path类全面解析]({% post_url 2024-04-01-自定义View-Path类全面解析 %})  
 
 * * *
 
@@ -136,15 +136,17 @@ ViewRoot、DecorView、Window和Activity四者共同完成view的绘制。
 
 *   本文全面解析关于自定义View中基础：**ViewRoot、DecorView & Window**，
 *   Carson带你学Android自定义View文章系列：  
-    [Carson带你学Android：自定义View基础](https://www.jianshu.com/p/146e5cec4863)  
-    [Carson带你学Android：一文梳理自定义View工作流程](https://www.jianshu.com/p/e79a55c141d6)  
-    [Carson带你学Android：自定义View绘制准备-DecorView创建](https://www.jianshu.com/p/ac3262d233af)  
-    [Carson带你学Android：自定义View Measure过程](https://www.jianshu.com/p/1dab927b2f36)  
-    [Carson带你学Android：自定义View Layout过程](https://www.jianshu.com/p/158736a2549d)  
-    [Carson带你学Android：自定义View Draw过程](https://www.jianshu.com/p/95afeb7c8335)  
-    [Carson带你学Android：手把手教你写一个完整的自定义View](https://www.jianshu.com/p/e9d8420b1b9c)  
-    [Carson带你学Android：Canvas类全面解析](https://www.jianshu.com/p/762b490403c3)  
-    [Carson带你学Android：Path类全面解析](https://www.jianshu.com/p/2c19abde958c)
+    [Carson带你学Android：自定义View基础]({% post_url 2024-04-01-自定义View基础必知必会 %})   
+    [Carson带你学Android：自定义View-ViewRoot、DecorView、Window区别是什么]({% post_url 2024-04-01-ViewRoot-DecorView-Window区别是什么 %})  
+    [Carson带你学Android：一文梳理自定义View工作流程]({% post_url 2024-04-01-一文梳理自定义View工作流程 %})  
+    [Carson带你学Android：自定义View绘制准备-DecorView创建]({% post_url 2024-04-01-自定义View绘制准备-DecorView创建 %})  
+    [Carson带你学Android：自定义View Measure过程]({% post_url 2024-04-01-自定义View测量过程(Measure) %})  
+    [Carson带你学Android：带你了解神秘的MeasureSpec类]({% post_url 2024-04-01-自定义View-带你了解神秘的MeasureSpec类 %})  
+    [Carson带你学Android：自定义View Layout过程]({% post_url 2024-04-01-自定义View布局过程(Layout) %})  
+    [Carson带你学Android：自定义View Draw过程]({% post_url 2024-04-01-自定义View绘制过程(Draw) %})  
+    [Carson带你学Android：手把手教你写一个完整的自定义View]({% post_url 2024-04-01-手把手教你写一个完整的自定义View %})  
+    [Carson带你学Android：Canvas类全面解析]({% post_url 2024-04-01-自定义View-Canvas类全面解析 %})  
+    [Carson带你学Android：Path类全面解析]({% post_url 2024-04-01-自定义View-Path类全面解析 %})  
 
 * * *
 
