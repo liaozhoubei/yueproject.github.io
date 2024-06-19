@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "手把手教你写一个完整的自定义View"
+title:  "为什么你设置的wrap_content不起作用"
 date:   2024-04-01 01:51:34 +0800
 categories: 自定义View
 ---
