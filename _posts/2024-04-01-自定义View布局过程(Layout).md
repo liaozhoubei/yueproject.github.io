@@ -642,7 +642,7 @@ public void layout( int l , int t, int r , int b){
 > *   实际上在当屏幕可包裹内容时，他们的值是相等的；
 > *   只有当view超出屏幕后，才能看出他们的区别：getMeasuredWidth()是实际View的大小，与屏幕无关，而getHeight的大小此时则是屏幕的大小。当超出屏幕后getMeasuredWidth()等于getWidth()加上屏幕之外没有显示的大小
 
-这个结论是错的！详细请[点击文章](http://blog.csdn.net/dmk877/article/details/49734869/)
+这个结论是错的！详细请[点击文章](https://blog.csdn.net/dmk877/article/details/49734869/)
 
 结论
 ==

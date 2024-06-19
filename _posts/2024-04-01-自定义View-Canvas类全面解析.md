@@ -284,7 +284,7 @@ Canvas canvas = new Canvas(bitmap)
 *   利用Canvas类可绘画出很多内容，如图形、文字、线条等等；
 *   对应使用的方法如下：
 
-> 仅列出常用方法，更加详细的方法可参考官方文档 [Canvas](http://developer.android.com/reference/android/graphics/Canvas.html)
+> 仅列出常用方法，更加详细的方法可参考官方文档 [Canvas](https://developer.android.com/reference/android/graphics/Canvas.html)
 
 ![](assets/img/docs/944365-ff8cc50eb32128a8.png)
 
