@@ -5,7 +5,7 @@ date:   2024-04-01 01:51:34 +0800
 categories: 自定义View
 ---
 
-![](assets/img/docs/944365-10ea33e4c4252db5.png?imageMogr2/auto-orient/strip|imageView2/2/w/1200/format/webp)
+![](assets/img/docs/944365-10ea33e4c4252db5.png)
 
 * * *
 
@@ -287,7 +287,8 @@ protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
     int mHeight = 400;
 
   // 当布局参数设置为wrap_content时，设置默认值
-    if (getLayoutParams().width == ViewGroup.LayoutParams.WRAP_CONTENT && getLayoutParams().height == ViewGroup.LayoutParams.WRAP_CONTENT) {
+    if (getLayoutParams().width == ViewGroup.LayoutParams.WRAP_CONTENT 
+        && getLayoutParams().height == ViewGroup.LayoutParams.WRAP_CONTENT) {
         setMeasuredDimension(mWidth, mHeight);
     // 宽 / 高任意一个布局参数为= wrap_content时，都设置默认值
     } else if (getLayoutParams().width == ViewGroup.LayoutParams.WRAP_CONTENT) {
