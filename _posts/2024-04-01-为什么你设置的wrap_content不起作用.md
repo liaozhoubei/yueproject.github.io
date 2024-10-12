@@ -3,6 +3,7 @@ layout: post
 title:  "为什么你设置的wrap_content不起作用"
 date:   2024-04-01 01:51:34 +0800
 categories: 自定义View
+tag: [Android]
 ---
 
 ![](assets/img/docs/944365-10ea33e4c4252db5.png)

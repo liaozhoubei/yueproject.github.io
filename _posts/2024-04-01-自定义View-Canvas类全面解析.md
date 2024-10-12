@@ -3,6 +3,7 @@ layout: post
 title:  "自定义View Canvas类全面解析"
 date:   2024-04-01 01:51:34 +0800
 categories: 自定义View
+tag: [Android]
 ---
 
 ![](assets/img/docs/944365-10ea33e4c4252db5.png)

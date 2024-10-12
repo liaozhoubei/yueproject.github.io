@@ -3,6 +3,7 @@ layout: post
 title:  "ViewRoot、DecorView、Window区别是什么"
 date:   2024-04-01 01:51:34 +0800
 categories: 自定义View
+tag: [Android]
 ---
 
 * * *
