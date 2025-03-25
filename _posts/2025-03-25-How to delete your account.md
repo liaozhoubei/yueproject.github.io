@@ -8,12 +8,14 @@ categories: 杂项
 
 # How to delete your account
 
- - 进入应用
+- Enter new concept English application
 
- - 选择设置
+- Select Settings
 
- - 点击更多
+- Click more
 
- - 点击删除账号
+- Click Delete account
 
- - 点击确定
+- Click OK
+
+Once you choose to delete your account, the app will delete your left and right information within 90 days
