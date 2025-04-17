@@ -1,4 +1,4 @@
-name: "Build, Deploy and Sync to Qiniu"
+name: "Build, Deploy"
 on:
   push:
     branches:
@@ -61,18 +61,6 @@ jobs:
         with:
           path: "_site${{ steps.pages.outputs.base_path }}"
 
-      - name: Prepare for Qiniu Sync
-        run: |
-          mkdir -p qiniu_sync
-          cp -r "_site${{ steps.pages.outputs.base_path }}"/* qiniu_sync/
-
-      - name: Upload artifact for Qiniu Sync
-        uses: actions/upload-artifact@v4
-        with:
-          name: qiniu-sync-files
-          path: qiniu_sync/
-          retention-days: 1
-
   deploy:
     environment:
       name: github-pages
@@ -84,33 +72,3 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v4
 
-  sync-to-qiniu:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Download artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: qiniu-sync-files
-          path: qiniu_sync
-
-      - name: Configure Qiniu CLI
-        run: |
-          wget "https://github.com/qiniu/qshell/releases/download/v2.16.0/qshell-v2.16.0-linux-amd64.tar.gz" -O qshell.tar.gz
-          tar -xzf qshell.tar.gz
-          chmod +x qshell
-          ./qshell account ${{ secrets.QINIU_ACCESS_KEY }} ${{ secrets.QINIU_SECRET_KEY }} qiniu
-
-      - name: Sync to Qiniu
-        run: |
-          # 使用七牛云的qshell工具同步文件
-          ./qshell qupload2 \
-            --src-dir=qiniu_sync \
-            --bucket=${{ secrets.QINIU_BUCKET_NAME }} \
-            --overwrite=true \
-            --check-exists=true \
-            --check-hash=true \
-            --rescan-local=true
-        env:
-          QINIU_ACCESS_KEY: ${{ secrets.QINIU_ACCESS_KEY }}
-          QINIU_SECRET_KEY: ${{ secrets.QINIU_SECRET_KEY }}
