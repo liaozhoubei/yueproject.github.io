@@ -125,6 +125,11 @@ jobs:
 
           # 可以排除某些文件或目录不同步
           # EXCLUDE: .jekyll-cache # 排除 Jekyll 缓存目录
+                    # 排除不需要同步或删除的文件/目录
+          # 加入 .user.ini 以防止 --delete 参数删除它
+          EXCLUDE: |
+            .jekyll-cache
+            .user.ini
 
       - name: Server Deployment successful
         run: echo "Deployment to server completed successfully!"
