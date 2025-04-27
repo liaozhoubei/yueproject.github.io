@@ -1,4 +1,4 @@
-name: "Build, Deploy"
+name: "Build and Deploy"
 on:
   push:
     branches:
@@ -71,4 +71,3 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
-
