@@ -111,7 +111,7 @@ jobs:
           # --exclude='.jekyll-cache' # 排除 Jekyll 缓存目录
           # 排除不需要同步或删除的文件/目录
           # 加入 .user.ini 以防止 --delete 参数删除它
-          ARGS: --archive --verbose --compress --delete --exclude='.user.ini' --exclude='.jekyll-cache'
+          ARGS: --archive --verbose --compress --delete --no-times --exclude='.user.ini' --exclude='.jekyll-cache'
           # --archive: 归档模式，保留文件权限、时间戳等
           # --verbose: 显示详细输出
           # --compress: 传输过程中压缩数据
