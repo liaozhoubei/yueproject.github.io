@@ -46,6 +46,11 @@ jobs:
           bundler-cache: true
 
       - name: Build site
+        # 注意这里使用了 _site${{ steps.pages.outputs.base_path }} 作为构建目标目录
+        # 这通常是为了适应 GitHub Pages 的子目录部署
+        # 同步到你的服务器时，你可能需要将这个目录内容部署到服务器的网站根目录
+        # 或者你也可以选择将 Jekyll build 的目标目录改为 _site，然后同步 _site 目录
+        # 这里我们假设你直接同步这个带 base_path 的目录内容
         run: bundle exec jekyll b -d "_site${{ steps.pages.outputs.base_path }}"
         env:
           JEKYLL_ENV: "production"
@@ -56,29 +61,70 @@ jobs:
             \-\-disable-external \
             \-\-ignore-urls "/^http:\/\/127.0.0.1/,/^http:\/\/0.0.0.0/,/^http:\/\/localhost/"
 
-      - name: Upload site artifact
+      # 上传用于 GitHub Pages 的 artifact
+      - name: Upload site artifact for Pages
         uses: actions/upload-pages-artifact@v3
         with:
           path: "_site${{ steps.pages.outputs.base_path }}"
+          # actions/upload-pages-artifact 默认会命名 artifact 为 "github-pages"
 
-  deploy:
+  # 部署到 GitHub Pages 的 Job (保持不变)
+  deploy_pages:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
-    needs: build
+    needs: build # 依赖 build Job
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
-            # 4. 通过 rsync 部署到服务器
-      - name: Deploy via SSH
-        uses: appleboy/scp-action@master
-        with:
-          host: ${{ secrets.SERVER_IP }}
-          username: ${{ secrets.SERVER_USER }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          source: "_site/*"
-          target: ${{ secrets.SERVER_DEPLOY_PATH }}
-          rm: true  # 同步前删除目标目录旧文件
 
+  # 新增的 Job：部署到你的独立服务器
+  deploy_to_server:
+    runs-on: ubuntu-latest
+    needs: build # 依赖 build Job，确保在构建完成后才执行
+    # 可以选择添加 condition 来控制何时部署到服务器，例如：
+    # if: github.ref == 'refs/heads/main' # 只在推送到 main 分支时部署到服务器
+
+    steps:
+      - name: Download site artifact
+        # 下载 build Job 上传的 artifact。actions/upload-pages-artifact 默认名称是 "github-pages"
+        uses: actions/download-artifact@v4
+        with:
+          name: github-pages # 确保这里是 build Job 上传 artifact 时使用的名称
+          # path: ./downloaded-site # 可以指定下载路径，不指定则默认下载到工作目录
+
+      - name: Deploy with rsync
+        # 使用 easingthemes/ssh-deploy Action 通过 rsync 同步文件
+        # 确保你已经在 GitHub 仓库 Settings -> Secrets 中添加了必要的 Secrets
+        uses: easingthemes/ssh-deploy@main
+        with:
+          # 必须配置的 Secrets
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }} # 你的服务器 SSH 私钥
+          REMOTE_HOST: ${{ secrets.SERVER_IP }}         # 服务器 IP 地址或域名
+          REMOTE_USER: ${{ secrets.SERVER_USER }}       # SSH 登录用户名
+          TARGET: ${{ secrets.SERVER_DEPLOY_PATH }}     # 网站文件在服务器上的目标路径 (例如 /var/www/your-site)
+
+          # rsync 同步参数 (推荐)
+          ARGS: --archive --verbose --compress --delete
+          # --archive: 归档模式，保留文件权限、时间戳等
+          # --verbose: 显示详细输出
+          # --compress: 传输过程中压缩数据
+          # --delete: 删除服务器上目标目录中在本地源目录中不存在的文件 (确保服务器内容与本地完全一致)
+
+          # 要同步的本地目录
+          # 下载的 artifact 会恢复 _site${{ steps.pages.outputs.base_path }} 目录结构
+          # 你需要将这个目录的内容同步到服务器的目标路径
+          # 如果你的服务器目标路径就是网站根目录，那么 SOURCE 就应该是这个目录本身的内容
+          # 根据你的 Jekyll 构建配置 (`-d "_site${{ steps.pages.outputs.base_path }}"`)，
+          # 下载的 artifact 会在工作目录下创建 _site/your_base_path/ 这样的结构
+          # rsync 的 SOURCE 需要指向实际的静态文件目录
+          # 通常情况下，_site/ 下的内容就是你需要同步的
+          SOURCE: _site/ # 假设下载的 artifact 在工作目录下恢复了 _site 目录结构
+
+          # 可以排除某些文件或目录不同步
+          # EXCLUDE: .jekyll-cache # 排除 Jekyll 缓存目录
+
+      - name: Server Deployment successful
+        run: echo "Deployment to server completed successfully!"
