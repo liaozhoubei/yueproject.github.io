@@ -121,7 +121,7 @@ jobs:
           # 下载的 artifact 会在工作目录下创建 _site/your_base_path/ 这样的结构
           # rsync 的 SOURCE 需要指向实际的静态文件目录
           # 通常情况下，_site/ 下的内容就是你需要同步的
-          SOURCE: _site/ # 假设下载的 artifact 在工作目录下恢复了 _site 目录结构
+          SOURCE: ./ # 假设下载的 artifact 在工作目录下恢复了 _site 目录结构
 
           # 可以排除某些文件或目录不同步
           # EXCLUDE: .jekyll-cache # 排除 Jekyll 缓存目录
