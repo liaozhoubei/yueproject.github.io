@@ -91,16 +91,13 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
       # 配置阿里云 OIDC 认证，确保你已经在 GitHub 仓库 Settings -> Secrets 中添加了 ALIBABA_CLOUD_ROLE_ARN Secret
-      - name: Authenticate to Aliyun
-        uses: aliyun/setup-aliyuncli-action@v1
+      # 1. 安装并配置阿里云 CLI（使用 OIDC）
+      - name: Setup Aliyun CLI
+        uses: aliyun/setup-aliyun-cli-action@v1
         with:
-          role-arn: ${{ secrets.ALIBABA_CLOUD_ROLE_ARN }} # 填入刚才角色的 ARN
+          role-arn: ${{ secrets.ALIBABA_CLOUD_ROLE_ARN }}
           role-session-name: GitHubActionsSession
-          region: cn-hangzhou
-
-      - name: Test Connection
-        run: |
-          aliyun ecs DescribeInstances # 此时已通过 OIDC 授权，无需 AccessKey
+          region-id: cn-shanghai
 
       - name: Download site artifact
         # 下载 build Job 上传的 artifact。actions/upload-pages-artifact 默认名称是 "github-pages"
