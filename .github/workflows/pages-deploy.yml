@@ -88,6 +88,20 @@ jobs:
     # if: github.ref == 'refs/heads/main' # 只在推送到 main 分支时部署到服务器
 
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      # 配置阿里云 OIDC 认证，确保你已经在 GitHub 仓库 Settings -> Secrets 中添加了 ALIBABA_CLOUD_ROLE_ARN Secret
+      - name: Authenticate to Aliyun
+        uses: aliyun/setup-aliyuncli-action@v1
+        with:
+          role-arn: ${{ secrets.ALIBABA_CLOUD_ROLE_ARN }} # 填入刚才角色的 ARN
+          role-session-name: GitHubActionsSession
+          region: cn-hangzhou
+
+      - name: Test Connection
+        run: |
+          aliyun ecs DescribeInstances # 此时已通过 OIDC 授权，无需 AccessKey
+
       - name: Download site artifact
         # 下载 build Job 上传的 artifact。actions/upload-pages-artifact 默认名称是 "github-pages"
         uses: actions/download-artifact@v4
@@ -102,9 +116,9 @@ jobs:
         with:
           # 必须配置的 Secrets
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }} # 你的服务器 SSH 私钥
-          REMOTE_HOST: ${{ secrets.SERVER_IP }}         # 服务器 IP 地址或域名
-          REMOTE_USER: ${{ secrets.SERVER_USER }}       # SSH 登录用户名
-          TARGET: ${{ secrets.SERVER_DEPLOY_PATH }}     # 网站文件在服务器上的目标路径 (例如 /var/www/your-site)
+          REMOTE_HOST: ${{ secrets.SERVER_IP }} # 服务器 IP 地址或域名
+          REMOTE_USER: ${{ secrets.SERVER_USER }} # SSH 登录用户名
+          TARGET: ${{ secrets.SERVER_DEPLOY_PATH }} # 网站文件在服务器上的目标路径 (例如 /var/www/your-site)
 
           # rsync 同步参数 (推荐)
           # 可以排除某些文件或目录不同步
